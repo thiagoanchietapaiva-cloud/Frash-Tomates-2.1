@@ -1,0 +1,18 @@
+const BASE_URL = 'https://api.themoviedb.org/3'
+const API_KEY = import.meta.env.VITE_TMDB_KEY
+
+export const IMG_URL = 'https://image.tmdb.org/t/p/w500'
+export const IMG_URL_GRANDE = 'https://image.tmdb.org/t/p/original'
+
+async function buscar(caminho, params = {}) {
+  const query = new URLSearchParams({ api_key: API_KEY, language: 'pt-BR', ...params })
+  const resposta = await fetch(`${BASE_URL}${caminho}?${query}`)
+  if (!resposta.ok) throw new Error('Erro ao buscar filmes')
+  const dados = await resposta.json()
+  return dados.results
+}
+
+export const getPopulares = () => buscar('/movie/popular')
+export const getEmCartaz = () => buscar('/movie/now_playing', { region: 'BR' })
+export const getMaisBemAvaliados = () => buscar('/movie/top_rated')
+export const getEmBreve = () => buscar('/movie/upcoming', { region: 'BR' })
