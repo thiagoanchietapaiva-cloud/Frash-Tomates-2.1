@@ -11,7 +11,23 @@ async function buscar(caminho, params = {}) {
   const dados = await resposta.json()
   return dados.results
 }
-
+const KEY = import.meta.env.VITE_TMDB_KEY
+const BASE = 'https://api.themoviedb.org/3'
+export const filmesPopulares = async () => {
+  const res = await fetch(`${BASE}/movie/popular?api_key=${KEY}&language=pt-BR`)
+  const data = await res.json()
+  return data.results
+}
+export const buscarFilmes = async (query) => {
+  const res = await fetch(`${BASE}/search/movie?api_key=${KEY}&language=pt-BR&query=${query}`)
+  const data = await res.json()
+  return data.results
+}
+export const detalheFilme = async (id) => {
+  const res = await fetch(`${BASE}/movie/${id}?api_key=${KEY}&language=pt-BR`)
+  const data = await res.json()
+  return data
+}
 export const getPopulares = () => buscar('/movie/popular')
 export const getEmCartaz = () => buscar('/movie/now_playing', { region: 'BR' })
 export const getMaisBemAvaliados = () => buscar('/movie/top_rated')
