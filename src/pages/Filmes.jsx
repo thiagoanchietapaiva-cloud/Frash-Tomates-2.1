@@ -26,16 +26,9 @@ export default function Filmes() {
   }
   return (
     <div className="min-h-screen bg-slate-900 px-4 py-8">
-      <Link 
-  to="/" 
-  className="inline-flex items-center gap-2 text-xl text-white px-10 font-bold hover:text-amber-500 mb-6"
->
-  <IoHome className="text-xl" />
-  Home
-</Link>
       <div className="max-w-6xl mx-auto">
         <h1 className="text-white text-4xl font-black mb-6">
-          Filmes <span className="text-orange-500">freshTomates</span>
+          Filmes 
         </h1>
         <form onSubmit={pesquisar} className="flex gap-2 mb-8">
           <input
