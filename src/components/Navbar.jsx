@@ -31,7 +31,7 @@ export default function Navbar() {
           ) : (
             <>
               <span className="text-slate-400 text-sm">Olá, {usuario.nome}</span>
-              <button onClick={sair} className="text-slate-300 text-sm hover:text-white font-bold">Sair</button>
+              <button onClick={sair} className="text-slate-300 text-sm font-bold hover:text-white">Sair</button>
             </>
           )}
         </nav>
