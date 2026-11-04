@@ -37,7 +37,7 @@ export default function AvaliacaoTomates({ filmeId }) {
       })
       const data = await res.json()
       if (data.tipo === 'success' || data.avaliacao) {
-        // atualiza lista
+
         const lista = await fetch(`${API_URL}/avaliacoes/${filmeId}`).then(r => r.json())
         setAvaliacoes(lista)
         setComentario('')

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import Navbar from '../components/Navbar'
 import FileiraFilmes from '../components/FileiraFilmes'
 import {
   getEmCartaz,
@@ -31,9 +30,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <Navbar />
-
-      {/* DESTAQUE */}
       {destaque && (
         <section
           className="relative h-[420px] md:h-[500px] bg-cover bg-center"
@@ -55,8 +51,6 @@ export default function Home() {
           </div>
         </section>
       )}
-
-      {/* FILEIRAS */}
       <FileiraFilmes titulo="Em cartaz nos cinemas" filmes={emCartaz} />
       <FileiraFilmes titulo="Mais populares" filmes={populares} />
       <FileiraFilmes titulo="Mais bem avaliados" filmes={maisBemAvaliados} />

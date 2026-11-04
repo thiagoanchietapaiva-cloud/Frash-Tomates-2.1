@@ -1,24 +1,21 @@
 import { useRef } from 'react'
+import { Link } from 'react-router'
 import { IMG_URL } from '../services/tmdb'
 import { GiTomato } from 'react-icons/gi'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
-
 export default function FileiraFilmes({ titulo, filmes }) {
   const carrosselRef = useRef(null)
-
   const rolar = (direcao) => {
     carrosselRef.current.scrollBy({
       left: direcao * 700,
       behavior: 'smooth',
     })
   }
-
   return (
     <section className="max-w-6xl mx-auto px-4 py-6">
       <h2 className="text-white text-2xl font-bold mb-4 border-l-4 border-orange-500 pl-3">
         {titulo}
       </h2>
-
       <div className="relative">
         <button
           onClick={() => rolar(-1)}
@@ -27,7 +24,6 @@ export default function FileiraFilmes({ titulo, filmes }) {
         >
           <IoChevronBack className="text-xl" />
         </button>
-
         <div
           ref={carrosselRef}
           className="flex gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
@@ -35,22 +31,21 @@ export default function FileiraFilmes({ titulo, filmes }) {
           {filmes
             .filter((f) => f.poster_path)
             .map((f) => (
-              <div key={f.id} className="w-[160px] shrink-0">
+              <Link key={f.id} to={`/filme/${f.id}`} className="w-[160px] shrink-0 group">
                 <img
                   src={`${IMG_URL}${f.poster_path}`}
                   alt={f.title}
-                  className="w-full h-[240px] object-cover rounded-lg"
+                  className="w-full h-[240px] object-cover rounded-lg group-hover:scale-105 transition duration-300"
                 />
                 {f.vote_average > 0 && (
                   <p className="text-orange-500 text-sm font-bold mt-2 flex items-center gap-1">
                     <GiTomato className="text-lg" /> {Math.round(f.vote_average * 10)}%
                   </p>
                 )}
-                <h3 className="text-white text-sm font-semibold truncate">{f.title}</h3>
-              </div>
+                <h3 className="text-white text-sm font-semibold truncate group-hover:text-orange-500 transition">{f.title}</h3>
+              </Link>
             ))}
         </div>
-
         <button
           onClick={() => rolar(1)}
           aria-label="Rolar para a direita"
